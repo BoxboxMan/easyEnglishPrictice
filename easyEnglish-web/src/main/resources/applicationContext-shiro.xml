@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+		
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/login.html"/>
+		<property name="filterChainDefinitions">
+		  <value>
+			<!-- 允许用户匿名访问的地址 -->
+			/welcome.html = anon
+			/adminStatic/** = anon
+			<!-- 允许用户匿名访问webapps下的静态资源 -->
+			/logout.html = logout
+			<!-- 用户必须登录才能访问的公共地址 -->
+			/**/*.html = authc
+		  </value>
+		</property>
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realms" ref="customRealm"/>
+		<property name="sessionManager" ref="sessionManager"/>
+	</bean>
+	
+	<!-- 定义realm校验器 -->
+	<bean id="customRealm" class="org.jxnu.controller.shiro.CustomRealm">
+		<property name="credentialsMatcher" ref="credentialsMatcher"/>
+	</bean>
+	
+	<!-- 自定义凭证匹配器 -->
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="md5"/>
+		<property name="hashIterations" value="1"/>
+	</bean>
+	
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="globalSessionTimeout" value="1800000"></property>
+		<property name="deleteInvalidSessions" value="true"></property>
+	</bean>
+		
+		
+</beans>

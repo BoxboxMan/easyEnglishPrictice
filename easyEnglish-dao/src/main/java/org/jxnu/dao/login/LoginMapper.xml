@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jxnu.dao.login.LoginMapper">
+
+	<select id="findSysPermission" resultType="org.jxnu.pojo.SysPermission">
+		SELECT
+		*
+		FROM
+		sys_permission
+		WHERE
+		type = 'permission'
+		AND id IN (
+		SELECT
+		sys_permission_id
+		FROM
+		sys_role_permission
+		WHERE
+		sys_role_id IN (
+		SELECT
+		sys_role_id
+		FROM
+		sys_user_role
+		WHERE
+		sys_user_id IN (
+		SELECT
+		id
+		FROM
+		sys_user
+		WHERE
+		id = #{userid} and locked=0
+		)
+		)
+		)
+	</select>
+
+	<select id="findUserMenuList" resultType="org.jxnu.pojo.SysPermission">
+		SELECT
+		*
+		FROM
+		sys_permission
+		WHERE
+		type = 'menu'
+		AND id IN (
+		SELECT
+		sys_permission_id
+		FROM
+		sys_role_permission
+		WHERE
+		sys_role_id IN (
+		SELECT
+		sys_role_id
+		FROM
+		sys_user_role
+		WHERE
+		sys_user_id IN (
+		SELECT
+		id
+		FROM
+		sys_user
+		WHERE
+		id = #{userid} and locked=0 
+		)
+		)
+		)
+	</select>
+
+</mapper>
