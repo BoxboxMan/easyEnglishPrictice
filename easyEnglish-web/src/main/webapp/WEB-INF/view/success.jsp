@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	okokokok
+	访问成功！
 </body>
 </html>

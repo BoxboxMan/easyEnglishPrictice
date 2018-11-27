@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jxnu.dao.register.RegisterMapper">
+
+	<insert id="register" parameterType="org.jxnu.pojo.SysUser">
+		INSERT INTO sys_user
+		VALUES
+		(
+		#{usercode},
+		#{usercode},
+		#{username},
+		MD5(#{password}),
+		'',
+		0
+		)
+	</insert>
+	
+	<select id="findRoleByName" parameterType="java.lang.String" resultType="org.jxnu.pojo.SysRole">
+		SELECT * from sys_role WHERE NAME=#{roleName}
+	</select>
+	
+	<insert id="insertSysUserRole" parameterType="java.lang.String">
+		INSERT INTO sys_user_role 
+		VALUES(UUID(),#{sys_user_id},#{sys_role_id})
+	</insert>
+
+
+</mapper>

@@ -22,6 +22,7 @@
 			<!-- 允许用户匿名访问的地址 -->
 			/welcome.html = anon
 			/adminStatic/** = anon
+			/register.html = anon
 			<!-- 允许用户匿名访问webapps下的静态资源 -->
 			/logout.html = logout
 			<!-- 用户必须登录才能访问的公共地址 -->

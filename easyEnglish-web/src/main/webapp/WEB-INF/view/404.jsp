@@ -26,7 +26,7 @@ setInterval("refer()",1000); //每过1秒运行一次refer()
 //倒计时跳转函数
 function refer(){
 if(t==0){
-　　location="http://www.baidu.com"; //#设定跳转的链接地址
+　　location="${pageContext.request.contextPath}/welcome.html"; //#设定跳转的链接地址
 　　}
 else if(t>0){
    t--; // 计数器递减
@@ -41,7 +41,7 @@ else if(t>0){
 	</div>
 	<div class="col-md-4" id="div2">
 		<button class="btn btn-primary">立即返回</button>
-		<button class="btn btn-primary">返回首页</button>
+		<button class="btn btn-primary"><a href="${pageContext.request.contextPath}/welcome.html">返回首页</a></button>
 	</div>
 </body>
 </html>

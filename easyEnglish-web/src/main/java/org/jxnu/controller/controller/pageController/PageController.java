@@ -12,12 +12,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
+	/**
+	 * 跳转到首页
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/welcome")
 	public ModelAndView welcomePage() throws Exception{
 		ModelAndView modelAndView = new ModelAndView("index");
 		return modelAndView;
 	}
 	
+	/**
+	 * 测试页面跳转是否成功
+	 * @return
+	 */
 	@RequestMapping("/test")
 	public String test(){
 		return "success";

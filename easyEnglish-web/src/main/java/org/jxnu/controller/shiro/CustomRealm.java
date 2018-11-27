@@ -2,7 +2,6 @@ package org.jxnu.controller.shiro;
 
 import java.util.List;
 
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -46,7 +45,7 @@ public class CustomRealm extends AuthorizingRealm{
 	 * 认证处理
 	 */
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token){
 		//获取登录时刻的用户名
 		String usercode = (String) token.getPrincipal();
 		//在数据库中进行匹配
@@ -56,21 +55,20 @@ public class CustomRealm extends AuthorizingRealm{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		CustomUser customUser = new CustomUser();
-		customUser.setId(sysUser.getId());
-		customUser.setUsercode(sysUser.getUsercode());
-		customUser.setUsername(sysUser.getUsername());
+		SessionObject sessionObject = new SessionObject();
+		sessionObject.setId(sysUser.getId());
+		sessionObject.setUsercode(sysUser.getUsercode());
+		sessionObject.setUsername(sysUser.getUsername());
 		//放入用户对应的权限
-		customUser.setPermissions(loginService.findSysPermission(sysUser.getId()));
+		sessionObject.setPermissions(loginService.findSysPermission(sysUser.getId()));
 		//放入用户对应显示菜单
-		customUser.setMenus(loginService.findUserMenuList(sysUser.getId()));
+		sessionObject.setMenus(loginService.findUserMenuList(sysUser.getId()));
 		//将与用户的密码进行加密
 		
 		//将查询到的信息放入凭证匹配器中自动匹配
 		SimpleAuthenticationInfo simpleAuthenticationInfo 
-			= new SimpleAuthenticationInfo(customUser, sysUser.getPassword(), this.getName());
+			= new SimpleAuthenticationInfo(sessionObject, sysUser.getPassword(), this.getName());
 		return simpleAuthenticationInfo;
 	}
-
 
 }

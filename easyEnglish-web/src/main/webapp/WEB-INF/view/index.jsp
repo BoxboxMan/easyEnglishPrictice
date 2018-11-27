@@ -22,7 +22,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="login_model.jsp"/>
 	<nav class="navbar navbar-default" id="header" role="navigation"> 
 	    <div class="container">
 	    	<div class="col-md-8">
@@ -37,7 +36,8 @@
 			</div>
 			<div class="col-md-4">
 		        <form class="navbar-form navbar-right" role="search">
-	            <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> 登录</button>
+	            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> 登录</button>
+        		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span><a href="${pageContext.request.contextPath}/logout.html">登出</a></button>
         		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> 注册</button>
         	</form>
 			</div>  
