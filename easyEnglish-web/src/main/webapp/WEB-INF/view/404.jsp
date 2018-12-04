@@ -36,6 +36,7 @@ else if(t>0){
 </script>
 </head>
 <body>
+	<h1>${excpetionMessage }</h1>
 	<div class="col-md-4" id="div1">
 		<p>即将离开本页，<span id="time">5</span>秒后自动返回上一页</p>
 	</div>

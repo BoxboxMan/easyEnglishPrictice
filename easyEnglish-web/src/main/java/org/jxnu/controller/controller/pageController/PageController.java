@@ -28,8 +28,9 @@ public class PageController {
 	 * @return
 	 */
 	@RequestMapping("/test")
-	public String test(){
+	public String test() throws Exception{
 		return "success";
 	}
+	
 	
 }

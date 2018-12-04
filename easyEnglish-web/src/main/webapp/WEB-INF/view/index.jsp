@@ -27,7 +27,7 @@
 	    	<div class="col-md-8">
 		        <ul class="nav nav-tabs nav-justified">
 					<li><a href="${pageContext.request.contextPath }/test.html">首页</a></li>
-					<li><a href="#">视频</a></li>
+					<li><a href="${pageContext.request.contextPath }/video/list.html">视频</a></li>
 					<li><a href="#">刷题</a></li>
 					<li><a href="#">个人中心</a></li>
 					<li><a href="#">Java</a></li>

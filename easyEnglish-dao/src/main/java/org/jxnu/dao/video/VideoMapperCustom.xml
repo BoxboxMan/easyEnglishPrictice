@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jxnu.dao.video.VideoMapperCustom">
+	
+	<sql id="video_column">
+		id,user_id userId,name,url,descprit,upload_date uploadDate	
+	</sql>
+
+	<select id="listAll" parameterType="org.jxnu.pojo.Video" resultType="org.jxnu.pojo.Video">
+		SELECT
+			v.id,
+			s.username userId,
+			v. NAME,
+			v.url,
+			v.descprit,
+			v.upload_date uploadDate
+		FROM
+			video v
+		LEFT JOIN sys_user s ON v.user_id = s.id
+		<if test="name != null">
+			<where>
+				name like '%${name}%'
+			</where>
+		</if>
+	</select>
+	
+	<insert id="insertVideo" parameterType="org.jxnu.pojo.Video">
+		INSERT INTO video
+		VALUES
+			(
+				NULL,
+				#{userId},
+				#{name},
+				#{url},
+				<if test=" descprit != null">
+				#{descprit},
+				</if>
+				#{uploadDate}
+			)
+	</insert>
+
+</mapper>
