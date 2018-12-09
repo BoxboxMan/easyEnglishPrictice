@@ -28,7 +28,7 @@
 		        <ul class="nav nav-tabs nav-justified">
 					<li><a href="${pageContext.request.contextPath }/test.html">首页</a></li>
 					<li><a href="${pageContext.request.contextPath }/video/list.html">视频</a></li>
-					<li><a href="#">刷题</a></li>
+					<li><a href="${pageContext.request.contextPath }/personal.html">刷题</a></li>
 					<li><a href="#">个人中心</a></li>
 					<li><a href="#">Java</a></li>
 					<li><a href="#">PHP</a></li>
@@ -107,7 +107,7 @@
 </div>
 <div class="panel-footer text-center">
 				<p>商务合作|关于我们|服务条款|信息反馈|联系我们</p>
-				<p>©2018 纵横国漫网 版权所有</p>
+				<p>©2018 EasyEnglish 版权所有</p>
 			</div>
 </body>
 </html>
