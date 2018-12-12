@@ -15,10 +15,10 @@
 </head>
 <body>
 	<div class="main w3l">
-		<h2>OOPS</h2>
+		<h2>QAQ</h2>
 		<h1> ERROR 404</h1>
-		<h3>"Sorry ! the page you are looking for can't be found"</h3>
-		<a href="#" class="back">BACK TO HOME</a>
+		<h3>"请求的页面好像出问题了！"</h3>
+		<a href="${pageContext.request.contextPath }/welcome.html" class="back">返 回 首 页</a>
 		<div class="social-icons w3">
 			<ul>
 				<li><a class="twitter" href="#"></a></li>

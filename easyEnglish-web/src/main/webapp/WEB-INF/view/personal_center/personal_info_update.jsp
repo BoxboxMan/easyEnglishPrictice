@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0">
 <title>修改个人信息</title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -63,7 +64,7 @@
 		$.ajax({
 			type:"post",
 			dataType:"json",
-			url:"${pageContext.request.contextPath}/personal/updateSysUser",
+			url:"${pageContext.request.contextPath}/personal/updateSysUser.action",
 			data:{
 				username:$('#username').val(),
 				password:$('#password').val()
