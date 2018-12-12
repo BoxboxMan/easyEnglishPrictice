@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +21,6 @@
 	.row ul li{width:18%;float:left;margin-right:7%;}
 	.div1{background-color:#f6f6f6;}
 	.row ul li img{width:100%;}
-	
 </style>
 </head>
 <body>
@@ -26,7 +28,7 @@
 	    <div class="container">
 	    	<div class="col-md-8">
 		        <ul class="nav nav-tabs nav-justified">
-					<li><a href="${pageContext.request.contextPath }/test.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/welcome.html">首页</a></li>
 					<li><a href="${pageContext.request.contextPath }/video/list.html">视频</a></li>
 					<li><a href="#">刷题</a></li>
 					<li><a href="${pageContext.request.contextPath }/personal.html">个人中心</a></li>
@@ -36,10 +38,12 @@
 			</div>
 			<div class="col-md-4">
 		        <form class="navbar-form navbar-right" role="search">
-	            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> 登录</button>
-        		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span><a href="${pageContext.request.contextPath}/logout.html">登出</a></button>
-        		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> 注册</button>
-        	</form>
+		        	<shiro:authenticated>
+		        		<span>用户:<shiro:principal property="username"/>&nbsp&nbsp&nbsp</span>
+		        	</shiro:authenticated>
+		        		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span><a href="${pageContext.request.contextPath}/logout.html">登出</a></button>
+	        		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> 注册</button>
+        		</form>
 			</div>  
 	    </div> 
     </nav>
@@ -78,25 +82,25 @@
     <h3>立即快速备齐竞争力 挑战名企高薪</h3>
     <ul>
       <li>
-        <img src="adminStatic/image/1.png" alt="" />
+        <img src="image/1.png" alt="" />
         <h5>全球外教守候</h5>
         <p>通过TESOL、TEFL资格认证的全球20000+外教，24小时真人指导，让您轻松进入全英文语言环境。</p>
         <div class="clear"></div>
       </li>
       <li class="item-none">
-        <img src="adminStatic/image/2.png" alt="" />
+        <img src="image/2.png" alt="" />
         <h5>精准匹配教材</h5>
         <p>根据您的需求及兴趣智能匹配教材，量身定制，依据12个等级细分学习水平，制定精准提升计划。</p>
         <div class="clear"></div>
       </li>
       <li>
-        <img src="adminStatic/image/3.png" alt="" />
+        <img src="image/3.png" alt="" />
         <h5>随时随地学习</h5>
         <p>上课地点自由，随处都是您的英语教室。与其把时间浪费在交通上，不如稳坐家中轻松学习。</p>
         <div class="clear"></div>
       </li>
       <li class="item-none">
-        <img src="adminStatic/image/4.png" alt="" />
+        <img src="image/4.png" alt="" />
         <h5>品牌实力保证</h5>
         <p>专注在线英语20年，服务人次超1.8亿，95%的客户满意度，成就英语在线教育领先品牌。</p>
         <div class="clear"></div>

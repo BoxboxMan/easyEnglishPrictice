@@ -75,15 +75,10 @@ button.navbar-toggle>span.icon-bar {
 		</div>
 		<div class="collapse navbar-collapse" id="example-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">修改个人信息</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/welcome.html">首页</a></li>
 				<li><a href="#">错题记录</a></li>
 				<li><a href="#">观看历史</a></li>
-				<li><a href="${pageContext.request.contextPath}/welcome.html">首页</a></li>
-				<li><a href="#">视频</a></li>
-				<li><a href="#">刷题</a></li>
-				<li><a href="#">个人中心</a></li>
-				<li><a href="#">Java</a></li>
-				<li><a href="#">PHP</a></li>
+				<li><a href="${pageContext.request.contextPath}/personal/updatePage.html">修改个人信息</a></li>
 			</ul>
 		</div>
 	</div>
