@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jxnu.dao.custommapper.StudentPaperCustomMapper">
+<resultMap id="BaseResultMap" type="org.jxnu.pojo.custom.StudentPaperCustom">
+	<id column="id" jdbcType="BIGINT" property="id" />
+	<result column="student_id" jdbcType="VARCHAR" property="studentId" />
+	<result column="paper_id" jdbcType="BIGINT" property="paperId" />
+	<result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+	<result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+	<result column="score" jdbcType="INTEGER" property="score" />
+	<result column="correct" jdbcType="INTEGER" property="correct" />
+	<result column="paper_name" jdbcType="VARCHAR" property="paperName" />
+</resultMap>
+	<select id="selectStudentPaperCustomByStudentId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select student_paper.id , student_id , paper_id ,start_time,end_time,
+		score, correct, paper_name
+		from student_paper,sys_user,paper_info
+		where
+		student_id=sys_user.id and paper_id=paper_info.id and student_id=#{id,
+		jdbcType=VARCHAR}
+	</select>
+</mapper>

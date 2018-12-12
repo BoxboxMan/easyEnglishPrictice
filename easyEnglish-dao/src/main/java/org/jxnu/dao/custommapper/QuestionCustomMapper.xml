@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jxnu.dao.custommapper.QuestionCustomMapper">
+	<resultMap id="BaseResultMap" type="org.jxnu.pojo.QuestionCustom">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="question" jdbcType="VARCHAR" property="question" />
+		<result column="answer" jdbcType="VARCHAR" property="answer" />
+		<result column="score" jdbcType="INTEGER" property="score" />
+		<result column="anno" jdbcType="VARCHAR" property="anno" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+	</resultMap>
+	<select id="selectQuestionCustomsByPaperId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select question_info.id, question, answer, score, anno, type 
+		from question_info, paper_info, paper_question
+		where paper_info.id = paper_question.paper_id and question_info.id = paper_question.question_id
+		and paper_info.id = #{id, jdbcType=BIGINT}
+		order by sn asc
+	</select>
+	
+</mapper>
