@@ -23,6 +23,12 @@ public class PageController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/personal")
+	public ModelAndView personalPage() throws Exception{
+		ModelAndView modelAndView = new ModelAndView("personal_center/personal_center_index");
+		return modelAndView;
+	}
+	
 	/**
 	 * 测试页面跳转是否成功
 	 * @return

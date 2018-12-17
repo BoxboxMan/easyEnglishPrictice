@@ -1,48 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<title>404报错页面</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<style type="text/css">
-	body{
-	background:url("image/404.jpg") no-repeat;
-	font-family:"微软雅黑";
-	background-size:100%;
-	}
-	#div1{margin-top:35%;margin-left:40%;}
-	#div2{margin-left:42%;}
-	.btn-primary{margin-right:5%;background-color:#00bfb4;border:none;}
-	span{color:#00bfb4;}
-</style>
-<script>
-var t=5;//设定跳转的时间
-setInterval("refer()",1000); //每过1秒运行一次refer()
-//倒计时跳转函数
-function refer(){
-if(t==0){
-　　location="${pageContext.request.contextPath}/welcome.html"; //#设定跳转的链接地址
-　　}
-else if(t>0){
-   t--; // 计数器递减
-　　document.getElementById('time').innerHTML=t; // 显示倒计时
-   }   	 
-}
-</script>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0">
+<title>首页</title>
+	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200italic,200,300,300italic,400italic,600,600italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="adminStatic/css/style404.css">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body>
-	<h1>${excpetionMessage }</h1>
-	<div class="col-md-4" id="div1">
-		<p>即将离开本页，<span id="time">5</span>秒后自动返回上一页</p>
-	</div>
-	<div class="col-md-4" id="div2">
-		<button class="btn btn-primary">立即返回</button>
-		<button class="btn btn-primary"><a href="${pageContext.request.contextPath}/welcome.html">返回首页</a></button>
+	<div class="main w3l">
+		<h2>QAQ</h2>
+		<h1> ERROR 404</h1>
+		<h3>"请求的页面好像出问题了！"</h3>
+		<a href="${pageContext.request.contextPath }/welcome.html" class="back">返 回 首 页</a>
+		<div class="social-icons w3">
+			<ul>
+				<li><a class="twitter" href="#"></a></li>
+				<li><a class="facebook" href="#"></a></li>
+				<li><a class="pinterest" href="#"></a></li>
+			</ul>
+		</div>
+		<div class="footer agileits">
+			<p>Copyright © 2016 Simple Error Page. All Rights Reserved | Design by <a href="http://w3layouts.com" target="_blank">W3layouts</a></p>
+		</div>
 	</div>
 </body>
 </html>

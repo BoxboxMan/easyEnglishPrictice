@@ -11,6 +11,7 @@ public interface PaperService {
 	List<PaperInfo> getAll();
 	List<QuestionCustom> getQuestions(Long paperId);
 	PaperInfo selectByPrimaryKey(Long paperId);
-	void saveStudentPaperVo(StudentPaperVo studentPaperVo , String id);
+	void saveStudentPaperVo(StudentPaperVo studentPaperVo , String id) throws Exception;
 	List<StudentPaperCustom> getStudentPaper(String id);
+	StudentPaperCustom getStudentPaperCustomByPrimaryKey(Long id);
 }

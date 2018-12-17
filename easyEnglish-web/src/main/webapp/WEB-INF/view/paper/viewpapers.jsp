@@ -14,7 +14,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li role="presentation"><a href="#" onclick="goPage('viewFinishedPapers.html')">我的试卷</a></li>
+		<li role="presentation"><a href="#" onclick="goPage('viewStudentPapers.html')">我的试卷</a></li>
 		<li role="presentation"><a href="#">错题本</a></li>
 		<li role="presentation"><a href="#">题目收藏</a></li>
 		<li role="presentation"><a href="#">我要刷题</a></li>

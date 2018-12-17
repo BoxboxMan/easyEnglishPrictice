@@ -74,8 +74,9 @@
 		<!--url美化 -->
 		<urlrewrite.version>3.2.0</urlrewrite.version>
 		<!-- jackson -->
-		<jackson.core.asl.version>1.9.13</jackson.core.asl.version>
-		<jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
+		<jackson.core>2.9.7</jackson.core>
+		<jackson-databind>2.9.7</jackson-databind>
+		<jackson-annotations>2.9.7</jackson-annotations>
 		<poi.version>3.9</poi.version>
 		<guava.version>17.0</guava.version>
 
@@ -261,15 +262,21 @@
 
 		<!-- 定义jackson -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>${jackson.core.asl.version}</version>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.core}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson.mapper.asl.version}</version>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson-databind}</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jackson-annotations}</version>
+		</dependency>
+
 
 		<!-- 测试框架 -->
 		<dependency>

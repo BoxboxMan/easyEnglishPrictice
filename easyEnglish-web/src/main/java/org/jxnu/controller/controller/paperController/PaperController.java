@@ -1,21 +1,19 @@
 package org.jxnu.controller.controller.paperController;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.shiro.SecurityUtils;
 import org.jxnu.controller.shiro.SessionObject;
 import org.jxnu.pojo.PaperInfo;
 import org.jxnu.pojo.QuestionCustom;
 import org.jxnu.pojo.StudentPaperVo;
+import org.jxnu.pojo.custom.StudentPaperCustom;
 import org.jxnu.service.paper.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 @Controller
 @RequestMapping("/paper")
@@ -42,21 +40,28 @@ public class PaperController {
 	}
 	
 	@RequestMapping("/submitanswer")
-	public void submitanswer(StudentPaperVo studentPaperVo) {
+	public String submitanswer(StudentPaperVo studentPaperVo) throws Exception {
 		SessionObject sessionObject=(SessionObject) SecurityUtils.getSubject().getPrincipal();
 		paperService.saveStudentPaperVo(studentPaperVo , sessionObject.getId());
+		return "redirect:/getpapers";
 	}
 	
-	@RequestMapping("/getFinishedPapers")
+	@RequestMapping("/getStudentPapers")
 	@ResponseBody
-	public Object getFinishedPapers() {
+	public Object getStudentPapers() {
 		SessionObject sessionObject=(SessionObject) SecurityUtils.getSubject().getPrincipal();
 		return paperService.getStudentPaper(sessionObject.getId());
 	}
 	
-	@RequestMapping("/viewFinishedPapers")
-	public String viewFinishedPapers() {
-		return "paper/viewFinishedPapers";
+	@RequestMapping("/viewStudentPapers")
+	public String viewStudentPapers() {
+		return "paper/viewStudentPapers";
 	}
-
+	
+	@RequestMapping("/getStudentPaper")
+	public String getStudentPaper(Long studentPaperId, Model model) {
+		StudentPaperCustom studentPaperCustom=paperService.getStudentPaperCustomByPrimaryKey(studentPaperId);
+		model.addAttribute("studentPaperCustom", studentPaperCustom);
+		return "paper/viewStudentPaper";
+	}
 }

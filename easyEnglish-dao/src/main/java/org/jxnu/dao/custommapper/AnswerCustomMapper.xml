@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jxnu.dao.custommapper.AnswerCustomMapper">
+	<resultMap id="BaseResultMap" type="org.jxnu.pojo.custom.AnswerCustom">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="student_paper_id" jdbcType="BIGINT" property="studentPaperId" />
+		<result column="question_id" jdbcType="BIGINT" property="questionId" />
+		<result column="answer" jdbcType="VARCHAR" property="answer" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="score" jdbcType="INTEGER" property="score" />
+		<result column="essay" jdbcType="LONGVARCHAR" property="attachment" />
+	</resultMap>
+	<select id="selectByStudentPaperId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select student_paper_answer.id, student_paper_id,
+		question_id, answer, type, score, essay
+		from student_paper_answer left
+		join student_answer_essay
+		on student_paper_answer.id=student_answer_id
+		where student_paper_id=#{id, jdbcType=BIGINT}
+	</select>
+	
+</mapper>
