@@ -26,7 +26,7 @@
 	    <div class="container">
 	    	<div class="col-md-8">
 		        <ul class="nav nav-tabs nav-justified">
-					<li><a href="${pageContext.request.contextPath }/test.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/welcome.html">首页</a></li>
 					<li><a href="${pageContext.request.contextPath }/video/list.html">视频</a></li>
 					<li><a href="${pageContext.request.contextPath }/paper/getpapers.html">刷题</a></li>
 					<li><a href="${pageContext.request.contextPath }/personal.html">个人中心</a></li>

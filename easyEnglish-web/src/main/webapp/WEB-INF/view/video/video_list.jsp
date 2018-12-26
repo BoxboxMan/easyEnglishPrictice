@@ -6,51 +6,170 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link href="adminStatic/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="adminStatic/css/style.css">
-<script type="text/javascript" src="adminStatic/js/jquery.min.js"></script>
-<script type="text/javascript" src="adminStatic/js/bootstrap.min.js"></script>
+<title>Social Media Bar Flat Responsive Widget Template ::
+	w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript">
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+<!--Custom Theme files-->
+<link href="../adminStatic/css/style_vedio.css" rel="stylesheet" type="text/css" media="all" />
+<!--//Custom Theme files -->
+<!--web font-->
+<link
+	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<!--web font-->
+<!--web font-->
 </head>
 <body>
-<ul class="nav nav-tabs nav-justified">
-	<li><a href="${pageContext.request.contextPath}/welcome.html">首页</a></li>
-	<li><a href="#">视频</a></li>
-	<li><a href="#">刷题</a></li>
-	<li><a href="#">个人中心</a></li>
-	<li><a href="#">Java</a></li>
-	<li><a href="#">PHP</a></li>
-</ul>
-	<form action="${pageContext.request.contextPath }/video/list.html" method="post">
-		<input type="text" name="name" value="${video.name }">
-		<input type="submit" value="搜索">
-	</form>
-	<button>
-		<a href="${pageContext.request.contextPath }/video/uploadPage.html">上传视频</a>
-	</button>
-	<table border="1">
-		<tr>
-			<th>视频名称</th>
-			<th>视频描述</th>
-			<th>上传者</th>
-			<th>操作</th>
-		</tr>
-		<c:forEach items="${videos }" var="video">
-			<tr>
-				<td>${video.name }</td>
-				<td>${video.descprit }</td>
-				<td>${video.userId }</td>
-				<td><button>
-						<a
-							href="${pageContext.request.contextPath }/video/play.html?url=${video.url}">播放</a>
-					</button></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<div class="text-center" id="footer">
-	<p>商务合作|关于我们|服务条款|信息反馈|联系我们</p>
-	<p>©2018 easyEnglish 版权所有</p>
-</div>
+	<!-- main -->
+	<div class="main">
+		<h1>视 频 列 表</h1>
+		<!--main-top-->
+		<div class="main-info">
+			<div class="row-one">
+			  <c:forEach items="${videos }" var="video">
+				<div class="social-left">
+					<ul>
+						<li>
+							<h4><div style='width:110px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;' title='${video.name }'>${video.name }</div></h4>
+							<h5>名称</h5>
+						</li>
+						<li>
+							<h4><div style='width:110px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;' title='${video.descprit }'>${video.descprit }</div></h4>
+							<h5>描述</h5>
+						</li>
+						<li>
+							<h4><div style='width:110px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;' title='${video.userId }'>${video.userId }</div></h4>
+							<h5>上传者</h5>
+						</li>
+						<li>
+							<h4><button>
+									<a
+										href="${pageContext.request.contextPath }/video/play.html?url=${video.url}">播放</a>
+								</button></h4>
+						</li>
+					</ul>
+				</div>
+				<div class="social-middle">
+					<h2>Need advice or just want to share?</h2>
+					<p>Send this decision to your friends...
+					<p>
+				</div>
+				<div class="social-right">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#"> </a></li>
+							<li><a href="#" class="twt"> </a></li>
+							<li><a href="#" class="ggp"> </a></li>
+							<li><a href="#" class="msg"> </a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+				</c:forEach>
+			</div>
+			<!-- <div class="row-one two">
+				<div class="social-left">
+					<ul>
+						<li>
+							<h4>25</h4>
+							<h5>DAYS LEFT</h5>
+						</li>
+						<li>
+							<h4>420</h4>
+							<h5>FOLLOWERS</h5>
+						</li>
+						<li>
+							<h4>100</h4>
+							<h5>LIKES</h5>
+						</li>
+						<li>
+							<h4>260</h4>
+							<h5>SHARES</h5>
+						</li>
+					</ul>
+				</div>
+				<div class="social-middle">
+					<h3>Need advice or just want to share?</h3>
+					<p>Send this decision to your friends...<p>
+				</div>
+				<div class="social-right">
+					<div class="social-icons">
+						<ul>
+							<li>
+								<a href="#"> </a>
+							</li>
+							<li>
+								<a href="#" class="twt"> </a>
+							</li>
+							<li>
+								<a href="#" class="ggp"> </a>
+							</li>
+							<li>
+								<a href="#" class="msg"> </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="row-one three">
+				<div class="social-left">
+					<ul>
+						<li>
+							<h4>25</h4>
+							<h5>DAYS LEFT</h5>
+						</li>
+						<li>
+							<h4>420</h4>
+							<h5>FOLLOWERS</h5>
+						</li>
+						<li>
+							<h4>100</h4>
+							<h5>LIKES</h5>
+						</li>
+						<li>
+							<h4>260</h4>
+							<h5>SHARES</h5>
+						</li>
+					</ul>
+				</div>
+				<div class="social-middle">
+					<h3>Need advice or just want to share?</h3>
+					<p>Send this decision to your friends...<p>
+				</div>
+				<div class="social-right">
+					<div class="social-icons">
+						<ul>
+							<li>
+								<a href="#"> </a>
+							</li>
+							<li>
+								<a href="#" class="twt"> </a>
+							</li>
+							<li>
+								<a href="#" class="ggp"> </a>
+							</li>
+							<li>
+								<a href="#" class="msg"> </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div> -->
+		</div>
+	</div>
+	<!--copy-right-->
+	<div class="copyright">
+		<p>
+			&copy; 2016 Social Media Bar . All rights reserved  <a
+				href="${pageContext.request.contextPath}/welcome.html" target="_blank">返回首页</a>
+		</p>
+	</div>
+	<!--//copy-right-->
 </body>
 </html>
