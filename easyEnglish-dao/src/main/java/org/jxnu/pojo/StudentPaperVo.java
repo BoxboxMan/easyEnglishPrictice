@@ -2,11 +2,11 @@ package org.jxnu.pojo;
 
 import java.util.List;
 
-import org.jxnu.pojo.custom.StudentPaperAnswerCustom;
+import org.jxnu.pojo.custom.AnswerCustom;
 
 //有学生答案，正确答案，StudentPaper
 public class StudentPaperVo extends StudentPaper {
-	private List<StudentPaperAnswerCustom> answerList;
+	private List<AnswerCustom> answerList;
 	private StudentPaper studentPaper;
 	private List<String> rightAnswerList;
 	
@@ -26,11 +26,11 @@ public class StudentPaperVo extends StudentPaper {
 		this.studentPaper = studentPaper;
 	}
 
-	public List<StudentPaperAnswerCustom> getAnswerList() {
+	public List<AnswerCustom> getAnswerList() {
 		return answerList;
 	}
 
-	public void setAnswerList(List<StudentPaperAnswerCustom> answerList) {
+	public void setAnswerList(List<AnswerCustom> answerList) {
 		this.answerList = answerList;
 	}
 	

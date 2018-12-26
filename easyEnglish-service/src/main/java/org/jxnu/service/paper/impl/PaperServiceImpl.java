@@ -1,13 +1,20 @@
 package org.jxnu.service.paper.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.jxnu.dao.custommapper.AnswerCustomMapper;
+import org.jxnu.dao.custommapper.PaperInfoCustomMapper;
 import org.jxnu.dao.custommapper.PassageCustomMapper;
 import org.jxnu.dao.custommapper.QuestionCustomMapper;
 import org.jxnu.dao.custommapper.StudentPaperCustomMapper;
 import org.jxnu.dao.generator.OptionInfoMapper;
 import org.jxnu.dao.generator.PaperInfoMapper;
+import org.jxnu.dao.generator.PaperQuestionMapper;
+import org.jxnu.dao.generator.PassageInfoMapper;
+import org.jxnu.dao.generator.PassageQuestionMapper;
 import org.jxnu.dao.generator.QuestionInfoMapper;
 import org.jxnu.dao.generator.StudentAnswerEssayMapper;
 import org.jxnu.dao.generator.StudentPaperAnswerMapper;
@@ -16,12 +23,17 @@ import org.jxnu.pojo.OptionInfo;
 import org.jxnu.pojo.OptionInfoExample;
 import org.jxnu.pojo.OptionInfoExample.Criteria;
 import org.jxnu.pojo.PaperInfo;
+import org.jxnu.pojo.PaperQuestion;
 import org.jxnu.pojo.PassageInfo;
+import org.jxnu.pojo.PassageQuestion;
 import org.jxnu.pojo.QuestionCustom;
 import org.jxnu.pojo.StudentAnswerEssay;
 import org.jxnu.pojo.StudentPaper;
 import org.jxnu.pojo.StudentPaperVo;
-import org.jxnu.pojo.custom.StudentPaperAnswerCustom;
+import org.jxnu.pojo.custom.AddPaperCustom;
+import org.jxnu.pojo.custom.AddQuestionCustom;
+import org.jxnu.pojo.custom.AnswerCustom;
+import org.jxnu.pojo.custom.PaperInfoCustom;
 import org.jxnu.pojo.custom.StudentPaperCustom;
 import org.jxnu.service.paper.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +62,14 @@ public class PaperServiceImpl implements PaperService {
 	private StudentAnswerEssayMapper studentAnswerEssayMapper;
 	@Autowired
 	private AnswerCustomMapper answerCustomMapper;
+	@Autowired
+	private PaperQuestionMapper paperQuestionMapper;
+	@Autowired
+	private PaperInfoCustomMapper paperInfoCustomMapper;
+	@Autowired
+	private PassageInfoMapper passageInfoMapper;
+	@Autowired
+	private PassageQuestionMapper passageQuestionMapper;
 	
 	@Override
 	public List<PaperInfo> getAll() {
@@ -102,7 +122,7 @@ public class PaperServiceImpl implements PaperService {
 	@Override
 	public void saveStudentPaperVo(StudentPaperVo studentPaperVo, String id) throws Exception {
 		StudentPaper studentPaper = studentPaperVo.getStudentPaper();
-		List<StudentPaperAnswerCustom> answerList = studentPaperVo.getAnswerList();
+		List<AnswerCustom> answerList = studentPaperVo.getAnswerList();
 		List<String> rightAnswerList = studentPaperVo.getRightAnswerList();
 		
 		studentPaper.setStudentId(id);
@@ -110,7 +130,7 @@ public class PaperServiceImpl implements PaperService {
 		boolean correct=true;
 		int totalScore=0;
 		for (int i = 0; i < answerList.size(); i++) {
-			StudentPaperAnswerCustom answer = answerList.get(i);
+			AnswerCustom answer = answerList.get(i);
 			answer.setStudentPaperId(studentPaper.getId());
 			// 给这道题评分
 			switch (answer.getType()) {
@@ -181,5 +201,99 @@ public class PaperServiceImpl implements PaperService {
 		return studentPaperCustom;
 	}
 
+	@Override
+	public void saveAddPaperCustom(AddPaperCustom paper, String id) {
+		// TODO
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			paper.setPaperDate(df.parse(df.format(new Date())));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		paper.setTeacherId(id);
+		paperInfoMapper.insert(paper);
+		
+		List<PassageInfo> passages=new ArrayList<>();
+		for(String passage:paper.getPassages()) {
+			PassageInfo p=new PassageInfo();
+			p.setPassage(passage);
+			passageInfoMapper.insert(p);
+			passages.add(p);
+		}
+		
+		for(int i=0;i<paper.getQuestions().size();i++) {
+			AddQuestionCustom question=paper.getQuestions().get(i);
+			switch (question.getType()) {
+			case 0:
+				questionInfoMapper.insert(question);
+				//保存选项
+				for(OptionInfo option:question.getOptions()) {
+					option.setQuestionId(question.getId());
+					optionInfoMapper.insert(option);
+				}
+				//保存阅读试题关系
+				PassageQuestion pq=new PassageQuestion();
+				pq.setQuestionId(question.getId());
+				pq.setPassageId(passages.get(question.getPassage()).getId());
+				passageQuestionMapper.insert(pq);
+				//保存试卷试题关系
+				PaperQuestion paperQuestion=new PaperQuestion();
+				paperQuestion.setPaperId(paper.getId());
+				paperQuestion.setQuestionId(question.getId());
+				paperQuestion.setSn(i);
+				paperQuestionMapper.insert(paperQuestion);
+				break;
+			case 1:
+				questionInfoMapper.insert(question);
+				for(OptionInfo option:question.getOptions()) {
+					option.setQuestionId(question.getId());
+					optionInfoMapper.insert(option);
+				}
+				PaperQuestion paperQuestion2=new PaperQuestion();
+				paperQuestion2.setPaperId(paper.getId());
+				paperQuestion2.setQuestionId(question.getId());
+				paperQuestion2.setSn(i);
+				paperQuestionMapper.insert(paperQuestion2);
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
+	@Override
+	public List<PaperInfoCustom> getPaperInfoCustomsByTeaId(String teaId) {
+		List<PaperInfoCustom> papers = new ArrayList<>();
+		List<Long> ids=paperInfoCustomMapper.selectPaperIdByTeaId(teaId);
+		for(Long paperId:ids) {
+			papers.add(paperInfoCustomMapper.selectPaperInfoCustomByPaperId(paperId));
+		}
+		return papers;
+	}
+	
+	@Override
+	public StudentPaperCustom getSubStuPaperByPaperId(Long paperId, List<QuestionCustom> questions) {
+		// TODO Auto-generated method stub
+		StudentPaperCustom subPaper=studentPaperCustomMapper.getSubStuPaper(paperId);
+		List<AnswerCustom> answers=answerCustomMapper.selectSubAnswerByStuPaperId(subPaper.getId());
+		subPaper.setAnswers(answers);
+		List<QuestionCustom> subQuestions=new ArrayList<>();
+		for (AnswerCustom answer : answers) {
+			for (QuestionCustom subQuestion : questions) {
+				if (answer.getQuestionId().equals(subQuestion.getId())) {
+					subQuestions.add(subQuestion);
+				}
+			}
+		}
+		subPaper.setQuestions(subQuestions);
+		return subPaper;
+	}
+
+	@Override
+	public List<QuestionCustom> getSubQuestionsByPaperId(Long paperId) {
+		return questionCustomMapper.selectSubQuestionByPaperId(paperId);
+	}
+	
+	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="../adminStatic/js/viewFinishedPapers.js"></script>
+<script type="text/javascript" src="../adminStatic/js/viewGradePapers.js"></script>
 </script>
 <div class="container">
 	<div class="panel panel-primary">
@@ -12,8 +12,9 @@
 				<thead>
 					<tr align="center">
 						<th style="text-align: center;">试卷名</th>
-						<th style="text-align: center;">完成时间</th>
-						<th style="text-align: center;">成绩</th>
+						<th style="text-align: center;">完成人数</th>
+						<th style="text-align: center;">平均分</th>
+						<th style="text-align: center;">未评卷数</th>
 					</tr>
 				</thead>
 				<tbody id="t"></tbody>

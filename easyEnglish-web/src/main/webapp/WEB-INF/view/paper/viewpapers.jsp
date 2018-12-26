@@ -14,10 +14,13 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
+		<li role="presentation"><a href="${pageContext.request.contextPath}/welcome.html">首页</a></li>
 		<li role="presentation"><a href="#" onclick="goPage('viewStudentPapers.html')">我的试卷</a></li>
 		<li role="presentation"><a href="#">错题本</a></li>
 		<li role="presentation"><a href="#">题目收藏</a></li>
 		<li role="presentation"><a href="#">我要刷题</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/paper/viewAddPaper.html">我要出卷</a></li>
+		<li role="presentation"><a href="#" onclick="goPage('viewgGradePapers.html')">我要评卷</a></li>
 	</ul>
 	<div id="data">
 	显示数据的div

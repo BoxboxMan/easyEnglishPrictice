@@ -9,6 +9,7 @@ import org.jxnu.pojo.StudentPaper;
 public class StudentPaperCustom extends StudentPaper {
 	private String paperName;
 	private int fullScore;
+	private String studentName;
 	private List<QuestionCustom> questions;
 	private List<AnswerCustom> answers;
 	
@@ -42,6 +43,14 @@ public class StudentPaperCustom extends StudentPaper {
 
 	public void setAnswers(List<AnswerCustom> answers) {
 		this.answers = answers;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
 	}
 	
 }

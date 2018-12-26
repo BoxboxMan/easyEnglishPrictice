@@ -10,7 +10,9 @@
 	<result column="score" jdbcType="INTEGER" property="score" />
 	<result column="correct" jdbcType="INTEGER" property="correct" />
 	<result column="paper_name" jdbcType="VARCHAR" property="paperName" />
+	<result column="username" jdbcType="VARCHAR" property="studentName" />
 </resultMap>
+
 	<select id="selectByStudentId" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select student_paper.id , student_id , paper_id ,start_time,end_time,
@@ -36,5 +38,11 @@
 		where paper_info.id=paper_id
 		and question_id=question_info.id and
 		paper_info.id=#{id,jdbcType=BIGINT}
+	</select>
+	<select id="getSubStuPaper" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select sp.id, username, paper_name
+		from student_paper sp, sys_user u, paper_info p
+		where student_id=u.id and p.id=paper_id and p.id=#{id,jdbcType=BIGINT}  and correct=1 limit 1
 	</select>
 </mapper>

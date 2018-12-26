@@ -6,4 +6,5 @@ import org.jxnu.pojo.custom.AnswerCustom;
 
 public interface AnswerCustomMapper {
 	List<AnswerCustom> selectByStudentPaperId(Long StudentPaperId);
+	List<AnswerCustom> selectSubAnswerByStuPaperId(Long studentPaperId);
 }

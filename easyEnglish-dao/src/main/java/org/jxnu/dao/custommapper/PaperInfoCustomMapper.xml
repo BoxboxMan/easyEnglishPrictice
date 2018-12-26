@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jxnu.dao.custommapper.PaperInfoCustomMapper">
+	<resultMap id="BaseResultMap" type="org.jxnu.pojo.custom.PaperInfoCustom">
+		<id column="id" property="id" jdbcType="BIGINT" />
+    <result column="paper_name" property="paperName" jdbcType="VARCHAR" />
+    <result column="paper_date" property="paperDate" jdbcType="DATE" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="avg(score)" property="average" jdbcType="INTEGER" />
+    <result column="toGrade" property="toGrade" jdbcType="INTEGER" />
+    <result column="totalStudents" property="totalStudents" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="selectPaperIdByTeaId" parameterType="java.lang.String" resultType="java.lang.Long">
+		select p.id 
+		from paper_info p, sys_user 
+		where p.teacher_id=sys_user.id and teacher_id=#{id, jdbcType=VARCHAR}
+	</select>
+	<select id="selectPaperInfoCustomByPaperId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select p.id, paper_name, paper_date, teacher_id, duration,
+		avg(score), (select count(*) from
+		paper_info p LEFT OUTER JOIN
+		student_paper sp on(paper_id=p.id) where
+		correct=1 and p.id=#{id,jdbcType=BIGINT}) toGrade, 
+		(select COUNT(*) from paper_info p, student_paper
+		sp where p.id=paper_id and p.id=#{id, jdbcType=BIGINT}) totalStudents
+		from paper_info p LEFT OUTER JOIN student_paper sp on(paper_id=p.id)
+		where p.id=#{id,jdbcType=BIGINT}
+		GROUP BY p.id
+	</select>
+</mapper>

@@ -17,4 +17,13 @@
 		order by sn asc
 	</select>
 	
+	<select id="selectSubQuestionByPaperId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select question_info.id, question, answer, score, anno, type 
+		from question_info, paper_info, paper_question
+		where paper_info.id = paper_question.paper_id and question_info.id = paper_question.question_id
+		and type in (2,3)
+		and paper_info.id = #{id, jdbcType=BIGINT}
+		order by sn asc
+	</select>
+	
 </mapper>
