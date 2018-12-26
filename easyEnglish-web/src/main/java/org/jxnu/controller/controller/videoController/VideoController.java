@@ -63,7 +63,7 @@ public class VideoController {
 	}
 	
 	/**
-	 * 
+	 * 视频上传
 	 * @param video
 	 * @param request
 	 * @return
