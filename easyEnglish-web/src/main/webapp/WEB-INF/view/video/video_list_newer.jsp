@@ -68,7 +68,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="clear"></div>
+				<div class="clear">112233</div>
 				</c:forEach>
 			</div>
 			<!-- <div class="row-one two">
