@@ -241,7 +241,7 @@ public class PaperServiceImpl implements PaperService {
 				PaperQuestion paperQuestion=new PaperQuestion();
 				paperQuestion.setPaperId(paper.getId());
 				paperQuestion.setQuestionId(question.getId());
-				paperQuestion.setSn(i);
+				paperQuestion.setSn(question.getSn());
 				paperQuestionMapper.insert(paperQuestion);
 				break;
 			case 1:
@@ -253,7 +253,7 @@ public class PaperServiceImpl implements PaperService {
 				PaperQuestion paperQuestion2=new PaperQuestion();
 				paperQuestion2.setPaperId(paper.getId());
 				paperQuestion2.setQuestionId(question.getId());
-				paperQuestion2.setSn(i);
+				paperQuestion2.setSn(question.getSn());
 				paperQuestionMapper.insert(paperQuestion2);
 				break;
 			default:

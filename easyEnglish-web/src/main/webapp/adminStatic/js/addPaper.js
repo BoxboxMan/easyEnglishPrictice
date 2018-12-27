@@ -59,45 +59,62 @@ $(document).ready(function() {
 					</div>\
 				</div></div>";
 	}
+	//插入题目时，重新设置sn TODO 
+	function resetSn(){
+		//得到插入的题目的sn, 并把之后的题目的sn加一
+		sn=sn+1;
+		return ss;
+	}
+	//添加选择题
 	$("#addtype1").click(function() {
 		var question = $("<div class='panel panel-info' id='question'></div>");
 		question.append("<div class='panel-heading'>\
 					<strong class='panel-title'> 添加选择题 </strong>\
 				</div>\
-				<input type='hidden' name='questions["+sn+"].type' value='1'>");
+				<input type='hidden' name='questions["+sn+"].type' value='1'>" +
+						"<input type='hidden' name='questions["+sn+"].sn' value='"+sn+"'>");
 		var panelbody=$("<div class='panel-body'></div>");
 		panelbody.append(type1());
 		question.append(panelbody);
 		$("#show").append(question);
 		sn=sn+1;
 	});
+	//添加选项
 	 $(document).on("click", "#addOption",function(event) {
 		 length=$(this).parent().parent().children("#divOption").length;
-		 console.log(length);
-		 console.log(sn);
+		 ss=parseInt($($(this).parent().parent().find("#detail").get(0)).attr('name').substring(10));
+		 console.log(ss);
 		$(this).parent().before("<div class='form-group col-sm-12' id='divOption'>\
 						<div class='col-sm-2'>\
-							<input class='form-control' id='option' type='text' name='questions["+(sn-1)+"].options["+length+"].optionName'\
+							<input class='form-control' id='option' type='text' name='questions["+(ss)+"].options["+length+"].optionName'\
 								placeholder='选项'>\
 						</div>\
 						<div class='col-sm-10'>\
-							<input class='form-control' id='detail' type='text' name='questions["+(sn-1)+"].options["+length+"].details'\
+							<input class='form-control' id='detail' type='text' name='questions["+(ss)+"].options["+length+"].details'\
 								placeholder='输入选项内容'>\
 						</div>\
 					</div>");
 	});
-	 
+	 //添加阅读
 	 $("#addReading").click(function(){
 		 var panel=$("<div class='panel panel-info' id='passage"+passage+"'></div>");
 		 panel.append("<div class='panel-heading'>\
 					<strong class='panel-title'> 添加阅读题 </strong>\
 				</div>");
 		 var panelbody=$("<div class='panel-body'><\div>");
-		 panelbody.append("<textarea class='form-control' rows='16' placeholder='输入文章' name='passages["+passage+"]'></textarea>"
-						+ "<h2>添加选择题</h2><input type='hidden' name='questions["+sn+"].type' value='0'>" +
-								"<input type='hidden' name='questions["+sn+"].passage' value='"+passage+"'>"
-						+ type1()
-						+ "<div class='col-sm-12'>\
+		 panelbody.append("<textarea class='form-control' rows='16' placeholder='输入文章' name='passages["
+														+ passage
+														+ "]'></textarea>"
+														+ "<div id='question'><h2>添加选择题</h2><input type='hidden' name='questions["
+														+ sn
+														+ "].type' value='0'>"
+														+ "<input type='hidden' name='questions["
+														+ sn
+														+ "].passage' value='"
+														+ passage
+														+ "'>"
+														+ type1()+"</div>"
+														+ "<div class='col-sm-12'>\
 						<button type='button' class='btn btn-info btn-sm col-sm-2'\
 							id='addType0'>添加选择题</button>\
 					</div>");
@@ -106,12 +123,12 @@ $(document).ready(function() {
 		 sn=sn+1;
 		 passage=passage+1;
 	 });
-	 
+	 //添加阅读的选择题
 	 $(document).on("click", "#addType0",function(envent){
-		 var pa=$(this).parent().parent().parent().attr('id').substring(7);
-		 console.log(pa);
-		 $(this).parent().before("<h2>添加选择题</h2><input type='hidden' value='0' name='questions["+sn+"].type'>" +
-		 		"<input type='hidden' name='questions["+sn+"].passage' value='"+pa+"'>"+type1());
+		 var pa=$(this).parent().parent().parent().parent().attr('id').substring(7);
+		 $(this).parent().before("<div id='question'><h2>添加选择题</h2><input type='hidden' value='0' name='questions["+sn+"].type'>" +
+		 		"<input type='hidden' name='questions["+sn+"].sn' value='"+sn+"'>" +
+		 		"<input type='hidden' name='questions["+sn+"].passage' value='"+pa+"'>"+type1()+"</div>");
 		 sn=sn+1;
 	 })
 });
