@@ -54,7 +54,7 @@
 						<!-- 显示题目 -->
 						<p>${status.count}.${questionCustom.question}</p>
 						<!-- 遍历题目的每个选项 -->
-						<c:forEach items="${questionCustom.attachment[1] }" var="option">
+						<c:forEach items="${questionCustom.attachment[0] }" var="option">
 							<!-- 答案 -->
 							<input name="answerList[${status.index }].answer"
 								value="${option.optionName }" type="radio">${option.details }<br>

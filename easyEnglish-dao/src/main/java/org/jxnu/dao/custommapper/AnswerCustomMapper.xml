@@ -19,5 +19,14 @@
 		on student_paper_answer.id=student_answer_id
 		where student_paper_id=#{id, jdbcType=BIGINT}
 	</select>
-	
+	<select id="selectSubAnswerByStuPaperId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select student_paper_answer.id, student_paper_id,
+		question_id, answer, type, score, essay
+		from student_paper_answer left
+		join student_answer_essay
+		on student_paper_answer.id=student_answer_id
+		where student_paper_id=#{id, jdbcType=BIGINT}
+		and type in(2,3)
+	</select>
 </mapper>

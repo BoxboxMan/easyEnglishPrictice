@@ -7,6 +7,8 @@ import org.jxnu.controller.shiro.SessionObject;
 import org.jxnu.pojo.PaperInfo;
 import org.jxnu.pojo.QuestionCustom;
 import org.jxnu.pojo.StudentPaperVo;
+import org.jxnu.pojo.custom.AddPaperCustom;
+import org.jxnu.pojo.custom.PaperInfoCustom;
 import org.jxnu.pojo.custom.StudentPaperCustom;
 import org.jxnu.service.paper.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ public class PaperController {
 	public String submitanswer(StudentPaperVo studentPaperVo) throws Exception {
 		SessionObject sessionObject=(SessionObject) SecurityUtils.getSubject().getPrincipal();
 		paperService.saveStudentPaperVo(studentPaperVo , sessionObject.getId());
-		return "redirect:/getpapers";
+		return "redirect:/paper/getpapers";
 	}
 	
 	@RequestMapping("/getStudentPapers")
@@ -64,4 +66,38 @@ public class PaperController {
 		model.addAttribute("studentPaperCustom", studentPaperCustom);
 		return "paper/viewStudentPaper";
 	}
+	
+	@RequestMapping("/viewAddPaper")
+	public String viewAddPaper() {
+		return "paper/addPaper";
+	}
+	
+	@RequestMapping("/addPaper")
+	public String addPaper(AddPaperCustom paper) {
+		SessionObject sessionObject=(SessionObject) SecurityUtils.getSubject().getPrincipal();
+		paperService.saveAddPaperCustom(paper, sessionObject.getId());
+		return "";
+	}
+	
+	@RequestMapping("/viewgGradePapers")
+	public String viewgGradePapers() {
+		return "paper/viewGradePapers";
+	}
+	
+	@RequestMapping("/getGradePapers")
+	@ResponseBody
+	public Object getGradePapers() {
+		SessionObject sessionObject=(SessionObject) SecurityUtils.getSubject().getPrincipal();
+		List<PaperInfoCustom> papers= paperService.getPaperInfoCustomsByTeaId(sessionObject.getId());
+		return papers;
+	}
+	
+	@RequestMapping("/gradePaper")
+	public String gradePaper(Long paperId , Model model) {
+		List<QuestionCustom> subQuestions=paperService.getSubQuestionsByPaperId(paperId);
+		StudentPaperCustom subStuPaper=paperService.getSubStuPaperByPaperId(paperId, subQuestions);
+		model.addAttribute("subStuPaper", subStuPaper);
+		return "paper/gradePaper";
+	}
+	
 }

@@ -6,4 +6,6 @@ import org.jxnu.pojo.QuestionCustom;
 
 public interface QuestionCustomMapper {
 	List<QuestionCustom> selectQuestionCustomsByPaperId(Long paperId);
+	List<QuestionCustom> selectSubQuestionByPaperId(Long paperId);
+	
 }
