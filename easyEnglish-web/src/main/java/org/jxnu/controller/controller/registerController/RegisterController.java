@@ -30,6 +30,6 @@ public class RegisterController {
 	@RequestMapping("/register")
 	public ModelAndView register(SysUser user) throws Exception{
 		SysUser sessionObject = registerService.register(user);
-		return new ModelAndView("redirect:/welcome.html").addObject("sessionObj", sessionObject);
+		return new ModelAndView("redirect:/welcome.html").addObject("sessionObject", sessionObject);
 	}
 }

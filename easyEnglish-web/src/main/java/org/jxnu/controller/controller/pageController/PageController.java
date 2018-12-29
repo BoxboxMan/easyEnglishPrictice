@@ -1,5 +1,7 @@
 package org.jxnu.controller.controller.pageController;
 
+import org.apache.shiro.SecurityUtils;
+import org.jxnu.controller.shiro.SessionObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +22,8 @@ public class PageController {
 	@RequestMapping("/welcome")
 	public ModelAndView welcomePage() throws Exception{
 		ModelAndView modelAndView = new ModelAndView("index");
+		SessionObject sessionObject = (SessionObject) SecurityUtils.getSubject().getPrincipal();
+		modelAndView.addObject("sessionObject", sessionObject);
 		return modelAndView;
 	}
 	
