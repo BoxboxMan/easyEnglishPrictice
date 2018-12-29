@@ -16,10 +16,10 @@ public class RegisterServiceImpl implements RegisterService {
 	
 	@Override
 	public SysUser register(SysUser user) throws Exception {
-		//sys_user表中insert
-		registerMapper.register(user);
 		//获取到插入sys_user表后后生成的id
 		user.setId(user.getUsercode());
+		//sys_user表中insert
+		registerMapper.register(user);
 		//对该用户进行角色分配,初始都为学生
 		SysRole role = registerMapper.findRoleByName(Constant.ROLE_NAME_STUDENT);
 		int infectRows = registerMapper.insertSysUserRole(user.getId(), role.getId());
