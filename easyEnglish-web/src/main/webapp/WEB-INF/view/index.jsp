@@ -121,19 +121,19 @@ ul li a {
 			<h3>选择XXXXX四大理由</h3>
 			<h3>立即快速备齐竞争力 挑战名企高薪</h3>
 			<ul>
-				<li><img src="adminStatic/image/1.png" alt="" />
+				<li><img src="image/1.png" alt="" />
 					<h5>全球外教守候</h5>
 					<p>通过TESOL、TEFL资格认证的全球20000+外教，24小时真人指导，让您轻松进入全英文语言环境。</p>
 					<div class="clear"></div></li>
-				<li class="item-none"><img src="adminStatic/image/2.png" alt="" />
+				<li class="item-none"><img src="image/2.png" alt="" />
 					<h5>精准匹配教材</h5>
 					<p>根据您的需求及兴趣智能匹配教材，量身定制，依据12个等级细分学习水平，制定精准提升计划。</p>
 					<div class="clear"></div></li>
-				<li><img src="adminStatic/image/3.png" alt="" />
+				<li><img src="image/3.png" alt="" />
 					<h5>随时随地学习</h5>
 					<p>上课地点自由，随处都是您的英语教室。与其把时间浪费在交通上，不如稳坐家中轻松学习。</p>
 					<div class="clear"></div></li>
-				<li class="item-none"><img src="adminStatic/image/4.png" alt="" />
+				<li class="item-none"><img src="image/4.png" alt="" />
 					<h5>品牌实力保证</h5>
 					<p>专注在线英语20年，服务人次超1.8亿，95%的客户满意度，成就英语在线教育领先品牌。</p>
 					<div class="clear"></div></li>
