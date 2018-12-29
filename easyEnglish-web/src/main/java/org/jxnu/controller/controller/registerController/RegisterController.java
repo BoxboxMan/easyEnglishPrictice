@@ -29,7 +29,7 @@ public class RegisterController {
 	 */
 	@RequestMapping("/register")
 	public ModelAndView register(SysUser user) throws Exception{
-		SessionObject sessionObject = (SessionObject) registerService.register(user);
+		SysUser sessionObject = registerService.register(user);
 		return new ModelAndView("redirect:/welcome.html").addObject("sessionObj", sessionObject);
 	}
 }
