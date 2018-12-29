@@ -63,9 +63,9 @@
         <div class="cont_form_sign_up"> <a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&larr;</i></a>
         	  <input type="text" placeholder="用户名称" name="username" id="username"/>
 	          <p id="username1_err" style="color:red"></p>
-	          <input type="text" placeholder="请输入由数字/字母/下划线组成的用户名" name="usercode" id="usercode"/>
+	          <input type="text" placeholder="登陆账号" name="usercode" id="usercode"/>
 	          <p id="username1_err" style="color:red"></p>
-	          <input type="password" placeholder="请输入6-15位数字、字母组成的密码"  name="password" id="password"/>
+	          <input type="password" placeholder="请输入6-15位的密码"  name="password" id="password"/>
 	          <p id="password1_err" style="color:red"></p>
 	          <input type="password" placeholder="请确认密码"  name="confirm_password"  id="confirm_password"/>
 	          <p id="confirm_password_err" style="color:red"></p>
